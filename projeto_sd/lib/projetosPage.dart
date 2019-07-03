@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_sd/Aluno.dart';
+import 'home.dart';
+import 'projetosPesquisa.dart';
 
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+class ProjetosPage extends StatefulWidget {
+  String _nomeFaculdade;
+  ProjetosPage(this._nomeFaculdade);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<StatefulWidget> createState() {
+    return _ProjetosPageState(this._nomeFaculdade);
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _ProjetosPageState extends State<ProjetosPage> {
   int _counter = 0;
+  String _nomeFaculdade;
+  _ProjetosPageState(this._nomeFaculdade);
+
+  Aluno get user => null;
 
   void _incrementCounter() {
     setState(() {
@@ -21,10 +29,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
+      print("Faculdade passada: " + _nomeFaculdade);
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("Projetos"),
         centerTitle: true,
       ),
       body:
@@ -69,13 +77,12 @@ class _MyHomePageState extends State<MyHomePage> {
         trailing:
           Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => ContasReceberPage(this.user) 
-                  
-              //     )
-              //   );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProjetosPesquisaPage(this.user, this._nomeFaculdade)                   
+                  )
+                );
               },
             ),
           ],

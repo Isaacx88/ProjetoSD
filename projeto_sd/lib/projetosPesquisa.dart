@@ -27,19 +27,25 @@ import 'Aluno.dart';
 class ProjetosPesquisaPage extends StatefulWidget {
   Aluno user;
   double aux;
-  ProjetosPesquisaPage(this.user);
+  String _nomeFaculdade;
+  ProjetosPesquisaPage(this.user, this._nomeFaculdade);
+
+
+
   @override
   ProjetosPesquisaPageState createState() {
-    return new ProjetosPesquisaPageState(this.user);
+    return new ProjetosPesquisaPageState(this.user, this._nomeFaculdade);
   }
 }
 //Adaptar para exibir apenas a conta do usuário
 
 class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
   Aluno user;
-  ProjetosPesquisaPageState(this.user) {
+  String _nomeFaculdade;
+  ProjetosPesquisaPageState(this.user, this._nomeFaculdade) {
     projetosPesquisa = Firestore.instance
-        .collection("projetosPesquisa");
+        .collection("faculdades")
+        .document(_nomeFaculdade).collection("projetosPesquisa");
 
 
         //     projetosPesquisa = Firestore.instance
@@ -109,13 +115,18 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
       appBar: AppBar(
         title: Text('Projetos de pesquisa'),
         centerTitle: true,
+        backgroundColor: Colors.blue,
         
       ),
       body:
 
           //Mostrando dados do banco
       new StreamBuilder<QuerySnapshot>(
-        stream: Firestore.instance.collection("projetosPesquisa").snapshots(),
+        stream: Firestore.instance
+            .collection("faculdades")
+            .document(_nomeFaculdade)
+            .collection("projetosPesquisa")
+            .snapshots(),
 
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -214,10 +225,11 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
                               minWidth: 5.0,
                               height: 50.0,
                               child: RaisedButton(
+                                color: Colors.blue,
                                 child: 
 
                                 Padding(
-                                  padding: EdgeInsets.fromLTRB(80, 5, 80, 5),
+                                  padding: EdgeInsets.symmetric(),
                                   child: Row(children: <Widget>[
                                   
                                   Text(
@@ -226,10 +238,10 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
                                         fontSize: 20,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.left,
+                                    textAlign: TextAlign.center,
                                   ),
 
-                                  Icon(Icons.call_received, color: Colors.white,),
+                                  // Icon(Icons.call_received, color: Colors.white,),
 
                                   ]),
                                 ),

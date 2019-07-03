@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_sd/projetosPage.dart';
 
 import 'Aluno.dart';
 // import 'package:galinha_manca/UI/chart_tab.dart';
@@ -19,19 +20,20 @@ import 'Aluno.dart';
 
 class HomeScreen extends StatefulWidget {
   Aluno user;
+  String _nomeFaculdade;
   HomeScreen(this.user, {Key key}) : super(key: key);
 
-  _HomeScreenState createState() => _HomeScreenState(user);
+  _HomeScreenState createState() => _HomeScreenState(user, _nomeFaculdade);
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   Aluno user;
 
-  Widget _tabSelected;
-  int _tabSelectedIndex = 0;
-  List<Widget> _tabsWidget;
+  // Widget _tabSelected;
+  // int _tabSelectedIndex = 0;
+  // List<Widget> _tabsWidget;
 
-  _HomeScreenState(this.user);
+  _HomeScreenState(this.user, this._nomeFaculdade);
 
   // _HomeScreenState(this.user) {
   //   _tabSelected = GeralTab(user);
@@ -45,26 +47,27 @@ class _HomeScreenState extends State<HomeScreen> {
   // }
 
 //Teste combo box
-  List _cities =
-  ["Cluj-Napoca", "Bucuresti", "Timisoara", "Brasov", "Constanta"];
+  List _faculdades = ["FACEEL", "FAMAT", "FAEC", "FEMMA", "FAQUIM", "FAGEO", "FEMAT"];
 
   List<DropdownMenuItem<String>> _dropDownMenuItems;
-  String _currentCity;
+  String _nomeFaculdade;
 
   @override
   void initState() {
     _dropDownMenuItems = getDropDownMenuItems();
-    _currentCity = _dropDownMenuItems[0].value;
+    _nomeFaculdade = _dropDownMenuItems[0].value;
     super.initState();
   }
 
   List<DropdownMenuItem<String>> getDropDownMenuItems() {
     List<DropdownMenuItem<String>> items = new List();
-    for (String city in _cities) {
+
+    for (String faculdade in _faculdades) {
       items.add(new DropdownMenuItem(
-          value: city,
-          child: new Text(city)
-      ));
+          value: faculdade,
+          child: new Text(faculdade)
+      )
+      );
     }
     return items;
   }
@@ -72,21 +75,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
 
-  void changedDropDownItem(String selectedCity) {
+  void changedDropDownItem(String selectedfaculdade) {
     setState(() {
-      _currentCity = selectedCity;
+      _nomeFaculdade = selectedfaculdade;
     });
   }
-
-
-
-
-
 
 
   @override
   Widget build(BuildContext context) {
 
+print("Faculdade selecionada: " + _nomeFaculdade);
         return Scaffold(
           backgroundColor: Colors.white,
           /*drawer: Drawer(
@@ -170,12 +169,33 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Text("Escolha a sua faculdade:", style: TextStyle(fontSize: 25),),
           ),
 
-               new DropdownButton(
-                 
-                value: _currentCity,
-                items: _dropDownMenuItems,
-                onChanged: changedDropDownItem,
-              )
+          Divider(height: 20, color: Colors.transparent,),
+
+          new DropdownButton(       
+            value: _nomeFaculdade,
+            items: _dropDownMenuItems,
+            onChanged: changedDropDownItem,
+            
+          ),
+
+          ButtonTheme(
+            minWidth: 150.0,
+            height: 40.0,
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    
+                    MaterialPageRoute(
+                    //Passa o nome da faculdade como atributo
+                    builder: (BuildContext contex) => ProjetosPage(_nomeFaculdade)
+                    )
+                );
+
+              },
+              child: Text("Continuar", style: TextStyle(color: Colors.white, fontSize: 20),),
+            ),
+          ),
 
 
 
