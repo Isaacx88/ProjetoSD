@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 //import 'package:flutter_masked_text/flutter_masked_text.dart';
 // import 'package:galinha_manca/helpers/Aluno.dart';
 //import 'package:intl/intl.dart';
@@ -15,7 +16,7 @@ import 'Aluno.dart';
 
 //import 'package:sandbox/Categoria.dart';
 
-// class DetailPage extends StatelessWidget {
+// class DetailPagePesquisa extends StatelessWidget {
 //  //Cria novos documentos se o nome do caminho for diferente
 //  final DocumentReference documentReference = Firestore.instance           .collection("alunos")           .document(user.usuario.uid).document("myData/dummy2");
 // DocumentReference documentReference = Firestore.instance           .collection("alunos")           .document(user.usuario.uid).document("projetosPesquisa/contaR1");
@@ -24,7 +25,7 @@ import 'Aluno.dart';
 //  StreamSubscription<DocumentSnapshot> subscription;
 //   //final databaseReference = FirebaseDatabase.instance.reference();
 
-class DetailPage extends StatefulWidget {
+class DetailPagePesquisa extends StatefulWidget {
   Aluno user;
   double aux;
   String _nomeFaculdade;
@@ -35,19 +36,19 @@ class DetailPage extends StatefulWidget {
   String professorArea;
   String profContato;
 
-  DetailPage(this.user, this._nomeFaculdade, this.titulo, 
+  DetailPagePesquisa(this.user, this._nomeFaculdade, this.titulo, 
   this.descricao, this.bolsa, this.professorNome, this.professorArea, this.profContato);
 
 
 
   @override
-  DetailPageState createState() {
-    return new DetailPageState(this.user, this._nomeFaculdade, this.titulo, this.descricao, this.bolsa, this.professorNome, this.professorArea, this.profContato);
+  DetailPagePesquisaState createState() {
+    return new DetailPagePesquisaState(this.user, this._nomeFaculdade, this.titulo, this.descricao, this.bolsa, this.professorNome, this.professorArea, this.profContato);
   }
 }
 //Adaptar para exibir apenas a conta do usuário
 
-class DetailPageState extends State<DetailPage> {
+class DetailPagePesquisaState extends State<DetailPagePesquisa> {
   Aluno user;
   String _nomeFaculdade;
   String titulo;
@@ -57,7 +58,7 @@ class DetailPageState extends State<DetailPage> {
   String professorArea;
   String profContato;
   
-  DetailPageState(this.user, this._nomeFaculdade, this.titulo, 
+  DetailPagePesquisaState(this.user, this._nomeFaculdade, this.titulo, 
   this.descricao, this.bolsa, this.professorNome, this.professorArea, this.profContato) {
     projetosPesquisa = Firestore.instance
         .collection("faculdades")
@@ -83,7 +84,7 @@ class DetailPageState extends State<DetailPage> {
 
   //String id = snapshot.documentID;
 
-  // DetailPage.fromDocument(DocumentSnapshot snapshot) {
+  // DetailPagePesquisa.fromDocument(DocumentSnapshot snapshot) {
   //   this.nome = snapshot.data['nome'];
   //   this.subCategorias = snapshot.data['subCategorias'];
   //   this.id = snapshot.documentID;
@@ -127,7 +128,16 @@ class DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     getData();
-
+                       final Email email = Email(
+                        body: 'Olá! Estou interessado em participar do seu projeto!',
+                        subject: 'Intenção de participação em projeto - UNIFESSPA',
+                        //Inserir email do professor (this.profContato)
+                        recipients: [this.profContato],
+                        // recipients: ['professor@example.com'],
+                        // cc: ['cc@example.com'],
+                        // bcc: ['bcc@example.com'],
+                        //attachmentPath: '/path/to/attachment.zip',
+                      );
   
 
 
@@ -170,7 +180,8 @@ class DetailPageState extends State<DetailPage> {
                   height: MediaQuery.of(context).size.height * 0.2,
                   child: 
                   Text(
-                    titulo,
+                    //titulo,
+                    "MODELAGEM E AVALIAÇÃO DE DESEMPENHO DE VIDEOS EM 2K E 4K SOB REDES WIRELESS",
                     style: TextStyle(color: Colors.white, fontSize: 20.0),
                     textAlign: TextAlign.left,
                   ),
@@ -203,7 +214,8 @@ class DetailPageState extends State<DetailPage> {
         child: Column(
           children: <Widget>[
             Text(
-              descricao,
+              //descricao,
+              "RESUMO: Este trabalho tem como objetivo realizar uma modelagem da perda de frames de vídeos 2k e 4k, através do resultado desse estudo poderemos mensurar o 'nível' de importância de cada um dos frames (I, P e B) que formam os vídeos. Com isso pretende-se otimizar o processo de transmissão e recepção desse tipo de tráfego, que inclusive é o que cresce mais rapidamente, tanto em produção quanto em consumo na internet. Para este trabalho serão criados cenários de simulação e campanhas de medição tráfego real, para que assim crie-se um banco de dados de vídeos degradados, os quais passarão pelo processo de avalição de desmpoenho, usando métricas objetivas e subjetivas na análise, e sempre observando os padrões e métodos estabelecidos por organizações com a ISO e ITU. As principais ferramentas utilizadas neste trabalho serão Evalvid, MSU Video Quality e Iperf, todas gratuitas.  ",
               style: TextStyle(fontSize: 18.0),
             ), 
             
@@ -211,7 +223,11 @@ class DetailPageState extends State<DetailPage> {
                 padding: EdgeInsets.symmetric(vertical: 16.0),
                 width: MediaQuery.of(context).size.width,
                 child: RaisedButton(
-                  onPressed: () => {},
+                  onPressed: () async => {
+
+
+                      await FlutterEmailSender.send(email)
+                  },
                   color: Color.fromRGBO(58, 66, 86, 1.0),
                   child:
                       Text("Entrar em contato com o responsável", style: TextStyle(color: Colors.white)),

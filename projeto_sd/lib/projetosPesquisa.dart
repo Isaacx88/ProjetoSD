@@ -10,7 +10,7 @@ import 'dart:async';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'Aluno.dart';
-import 'detailPage.dart';
+import 'detailPagePesquisa.dart';
 
 //import 'package:intl/intl.dart';
 
@@ -253,7 +253,7 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => DetailPage(
+                                        builder: (context) => DetailPagePesquisa(
                                         this.user, 
                                         this._nomeFaculdade,
                                         ds["titulo"],
