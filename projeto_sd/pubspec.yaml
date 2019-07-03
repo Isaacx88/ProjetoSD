@@ -49,6 +49,7 @@ flutter:
     - images/projetosUNIFESSPA_LOGO.PNG
     - images/teste.png
     - images/teste2.png
+    - images/drive-steering-wheel.jpg
     # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg

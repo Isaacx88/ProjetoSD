@@ -10,6 +10,7 @@ import 'dart:async';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'Aluno.dart';
+import 'detailPage.dart';
 
 //import 'package:intl/intl.dart';
 
@@ -225,7 +226,7 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
                               minWidth: 5.0,
                               height: 50.0,
                               child: RaisedButton(
-                                color: Colors.blue,
+                                color: Color.fromRGBO(58, 66, 86, .9),
                                 child: 
 
                                 Padding(
@@ -249,10 +250,20 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
 
                                 onPressed: () {
                                   //Ao pressionar, redirecionar para a página com os detalhes
-                                  
-
-
-
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => DetailPage(
+                                        this.user, 
+                                        this._nomeFaculdade,
+                                        ds["titulo"],
+                                        ds["descricao"],
+                                        ds["bolsa"],
+                                        ds["professorNome"],
+                                        ds["professorArea"],
+                                        ds["profContato"])                   
+                                        )
+                                    );
                                 }
 
 
