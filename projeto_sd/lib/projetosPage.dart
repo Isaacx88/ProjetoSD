@@ -6,20 +6,22 @@ import 'projetosPesquisa.dart';
 
 class ProjetosPage extends StatefulWidget {
   String _nomeFaculdade;
-  ProjetosPage(this._nomeFaculdade);
+  Aluno user;
+  ProjetosPage(this._nomeFaculdade, this.user);
 
   @override
   State<StatefulWidget> createState() {
-    return _ProjetosPageState(this._nomeFaculdade);
+    return _ProjetosPageState(this._nomeFaculdade, this.user);
   }
 }
 
 class _ProjetosPageState extends State<ProjetosPage> {
+  Aluno user;
   int _counter = 0;
   String _nomeFaculdade;
-  _ProjetosPageState(this._nomeFaculdade);
+  _ProjetosPageState(this._nomeFaculdade, this.user);
 
-  Aluno get user => null;
+  // Aluno get user => null;
 
   void _incrementCounter() {
     setState(() {

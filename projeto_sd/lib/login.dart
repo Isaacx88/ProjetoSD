@@ -41,20 +41,28 @@ class _LoginPageState extends State<LoginPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              CircularProgressIndicator(
-                backgroundColor: Colors.white,
-              ),
-              SizedBox(
-                width: 20.0,
-              ),
+              // CircularProgressIndicator(
+              //   backgroundColor: Colors.white,
+              // ),
               Text(
                 "Carregando",
                 style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-              )
+                    TextStyle(fontWeight: FontWeight.bold, fontSize: 25, color: Colors.white),
+              ),
+
+              Divider(height: 10,),
+              Padding(
+                padding: EdgeInsets.only(right: 30, left: 30),
+                child: CircularProgressIndicator(
+                backgroundColor: Colors.white,
+              ),
+              ),
+              
+
+
             ],
           )
         ],

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_sd/projetosPage.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'Aluno.dart';
+import 'adicionarProjeto.dart';
 // import 'package:galinha_manca/UI/chart_tab.dart';
 // import 'package:galinha_manca/UI/extrato_tab.dart';
 // import 'package:galinha_manca/helpers/Aluno.dart';
@@ -88,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
 print("Faculdade selecionada: " + _nomeFaculdade);
         return Scaffold(
           backgroundColor: Colors.white,
-          /*drawer: Drawer(
+          drawer: Drawer(
             child: ListView(
               children: <Widget>[
                 UserAccountsDrawerHeader(
@@ -112,16 +114,38 @@ print("Faculdade selecionada: " + _nomeFaculdade);
                                   this.user.getFirebaseUser().photoUrl)))),
                 ),
                 ListTile(
-                  leading: Icon(MdiIcons.formatListChecks),
-                  title: Text('Categorias'),
+                  leading: Icon(Icons.library_add, size: 30,),
+                  title: Text('Adicionar projeto', style: TextStyle(fontSize: 18), textAlign: TextAlign.left,),
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Categorias()));
+                    if(this.user.getFirebaseUser().email == "isaacbarros88@gmail.com" || this.user.getFirebaseUser().email == "fernando.freire.94@gmail.com"){
+                        Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AdicionarProjetosPage(this.user)));
+                    } else{
+                     return new Alert(
+                        context: context,
+                        type: AlertType.error,
+
+                        title: "AVISO",
+                        desc: "Você precisa de autorização para utilizar essa função.",
+                        buttons: [
+                          DialogButton(
+                            child: Text(
+                              "OK",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                            onPressed: () => Navigator.pop(context),
+                            width: 120,
+                          )
+                        ],
+                      ).show();
+                    }
+
                   },
                 )
               ],
             ),
-          ),*/
+          ),
 
       appBar: AppBar(
         centerTitle: true,
@@ -188,7 +212,7 @@ print("Faculdade selecionada: " + _nomeFaculdade);
                     
                     MaterialPageRoute(
                     //Passa o nome da faculdade como atributo
-                    builder: (BuildContext contex) => ProjetosPage(_nomeFaculdade)
+                    builder: (BuildContext contex) => ProjetosPage(_nomeFaculdade, user,)
                     )
                 );
 

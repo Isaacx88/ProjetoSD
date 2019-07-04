@@ -140,6 +140,8 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
 
                 print("TESTE");
                 print("Tamanho da lista: " + snapshot.data.documents.length.toString());
+                print("Usuário: " + user.usuario.displayName);
+                print("Email: " + user.usuario.email);
 
                 return new Column(
                   children: <Widget>[
@@ -259,9 +261,9 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
                                         ds["titulo"],
                                         ds["descricao"],
                                         ds["bolsa"],
-                                        ds["professorNome"],
-                                        ds["professorArea"],
-                                        ds["profContato"])                   
+                                        ds["nomeProfessor"],
+                                        ds["areaProfessor"],
+                                        ds["emailProfessor"])                   
                                         )
                                     );
                                 }
