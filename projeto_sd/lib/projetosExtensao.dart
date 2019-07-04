@@ -10,51 +10,51 @@ import 'dart:async';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'Aluno.dart';
-import 'detailPagePesquisa.dart';
+import 'detailPageExtensao.dart';
 
 //import 'package:intl/intl.dart';
 
 //import 'package:sandbox/Categoria.dart';
 
-// class ProjetosPesquisaPage extends StatelessWidget {
+// class ProjetosExtensaoPage extends StatelessWidget {
 //  //Cria novos documentos se o nome do caminho for diferente
 //  final DocumentReference documentReference = Firestore.instance           .collection("alunos")           .document(user.usuario.uid).document("myData/dummy2");
-// DocumentReference documentReference = Firestore.instance           .collection("alunos")           .document(user.usuario.uid).document("projetosPesquisa/contaR1");
-//DocumentReference documentReference = Firestore.instance           .collection("alunos")           .document(user.usuario.uid).collection("projetosPesquisa").document("contaR1");
+// DocumentReference documentReference = Firestore.instance           .collection("alunos")           .document(user.usuario.uid).document("projetosExtensao/contaR1");
+//DocumentReference documentReference = Firestore.instance           .collection("alunos")           .document(user.usuario.uid).collection("projetosExtensao").document("contaR1");
 //  String myText = "Teste";
 //  StreamSubscription<DocumentSnapshot> subscription;
 //   //final databaseReference = FirebaseDatabase.instance.reference();
 
-class ProjetosPesquisaPage extends StatefulWidget {
+class ProjetosExtensaoPage extends StatefulWidget {
   Aluno user;
   double aux;
   String _nomeFaculdade;
-  ProjetosPesquisaPage(this.user, this._nomeFaculdade);
+  ProjetosExtensaoPage(this.user, this._nomeFaculdade);
 
 
 
   @override
-  ProjetosPesquisaPageState createState() {
-    return new ProjetosPesquisaPageState(this.user, this._nomeFaculdade);
+  ProjetosExtensaoPageState createState() {
+    return new ProjetosExtensaoPageState(this.user, this._nomeFaculdade);
   }
 }
 //Adaptar para exibir apenas a conta do usuário
 
-class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
+class ProjetosExtensaoPageState extends State<ProjetosExtensaoPage> {
   Aluno user;
   String _nomeFaculdade;
-  ProjetosPesquisaPageState(this.user, this._nomeFaculdade) {
-    projetosPesquisa = Firestore.instance
+  ProjetosExtensaoPageState(this.user, this._nomeFaculdade) {
+    projetosExtensao = Firestore.instance
         .collection("faculdades")
-        .document(_nomeFaculdade).collection("projetosPesquisa");
+        .document(_nomeFaculdade).collection("projetosExtensao");
 
 
-        //     projetosPesquisa = Firestore.instance
-        // .collection("projetosPesquisa")
+        //     projetosExtensao = Firestore.instance
+        // .collection("projetosExtensao")
         // .document(user.usuario.uid)
-        // .collection("projetosPesquisa");
+        // .collection("projetosExtensao");
 
-    documentReference = projetosPesquisa.document();
+    documentReference = projetosExtensao.document();
   }
 
   String myText = "";
@@ -68,7 +68,7 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
 
   //String id = snapshot.documentID;
 
-  // ProjetosPesquisaPage.fromDocument(DocumentSnapshot snapshot) {
+  // ProjetosExtensaoPage.fromDocument(DocumentSnapshot snapshot) {
   //   this.nome = snapshot.data['nome'];
   //   this.subCategorias = snapshot.data['subCategorias'];
   //   this.id = snapshot.documentID;
@@ -77,9 +77,9 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
   double saldo = 0; //Get saldo, trocar quando tiver um saldo global
   StreamSubscription<DocumentSnapshot> subscription;
 
-  //DocumentReference documentReference = Firestore.instance           .collection("alunos")           .document(user.usuario.uid).document("projetosPesquisa/contaR3");
+  //DocumentReference documentReference = Firestore.instance           .collection("alunos")           .document(user.usuario.uid).document("projetosExtensao/contaR3");
   DocumentReference documentReference;
-  CollectionReference projetosPesquisa;
+  CollectionReference projetosExtensao;
 
   final descController = TextEditingController();
   final dataController = TextEditingController();
@@ -114,7 +114,7 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
     getData();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Projetos de pesquisa'),
+        title: Text('Projetos de extensão'),
         centerTitle: true,
         backgroundColor: Colors.blue,
         
@@ -126,7 +126,7 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
         stream: Firestore.instance
             .collection("faculdades")
             .document(_nomeFaculdade)
-            .collection("projetosPesquisa")
+            .collection("projetosExtensao")
             .snapshots(),
 
         builder: (context, snapshot) {
@@ -178,8 +178,10 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
                             Padding(
                               padding: const EdgeInsets.only(
                                   top: 8, bottom: 2.0, left: 10, right: 2),
-                              child: Text(
-                                ds['titulo'],
+                              child: 
+                              
+                              Text(
+                                ds['titulo'].toString(),
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.grey[600]),
                                 textAlign: TextAlign.left,
@@ -214,7 +216,7 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
                               padding: const EdgeInsets.only(
                                   top: 4, bottom: 2.0, left: 10),
                               child: Text(
-                                ds['descricao'],
+                                ds['descricao'].toString(),
                                 maxLines: 3,
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.grey[600]),
@@ -254,11 +256,12 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => DetailPagePesquisa(
+                                        builder: (context) => DetailPageExtensao(
                                         this.user, 
                                         this._nomeFaculdade,
                                         ds["titulo"],
                                         ds["descricao"],
+                                        ds["bolsa"],
                                         ds["nomeProfessor"],
                                         ds["areaProfessor"],
                                         ds["emailProfessor"])                   
@@ -300,7 +303,7 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
       "name": "Pawan Kumar",
       "desc": "Flutter Developer"
     };
-    projetosPesquisa.document().setData(data).whenComplete(() {
+    projetosExtensao.document().setData(data).whenComplete(() {
       print("Document Added");
     }).catchError((e) => print(e));
   }
@@ -349,7 +352,7 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
     await Firestore.instance
         .collection("alunos")
         .document(user.usuario.uid)
-        .collection("projetosPesquisa")
+        .collection("projetosExtensao")
         .document()
         .delete();
   }

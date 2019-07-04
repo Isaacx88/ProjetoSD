@@ -163,11 +163,17 @@ class DetailPageExtensaoState extends State<DetailPageExtensao> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 35.0),
-                  Icon(
+                  InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
                     Icons.description,
                     color: Colors.white,
                     size: 30.0,
                   ),
+                  ),
+                  
                   Container(
                     width: 60.0,
                     child: new Divider(color: Colors.green),
@@ -180,8 +186,7 @@ class DetailPageExtensaoState extends State<DetailPageExtensao> {
                   height: MediaQuery.of(context).size.height * 0.2,
                   child: 
                   Text(
-                    //titulo,
-                    "MODELAGEM E AVALIAÇÃO DE DESEMPENHO DE VIDEOS EM 2K E 4K SOB REDES WIRELESS",
+                    titulo,
                     style: TextStyle(color: Colors.white, fontSize: 20.0),
                     textAlign: TextAlign.left,
                   ),
@@ -213,12 +218,31 @@ class DetailPageExtensaoState extends State<DetailPageExtensao> {
       child: Center(
         child: Column(
           children: <Widget>[
+
             Text(
-              //descricao,
-              "RESUMO: Este trabalho tem como objetivo realizar uma modelagem da perda de frames de vídeos 2k e 4k, através do resultado desse estudo poderemos mensurar o 'nível' de importância de cada um dos frames (I, P e B) que formam os vídeos. Com isso pretende-se otimizar o processo de transmissão e recepção desse tipo de tráfego, que inclusive é o que cresce mais rapidamente, tanto em produção quanto em consumo na internet. Para este trabalho serão criados cenários de simulação e campanhas de medição tráfego real, para que assim crie-se um banco de dados de vídeos degradados, os quais passarão pelo processo de avalição de desmpoenho, usando métricas objetivas e subjetivas na análise, e sempre observando os padrões e métodos estabelecidos por organizações com a ISO e ITU. As principais ferramentas utilizadas neste trabalho serão Evalvid, MSU Video Quality e Iperf, todas gratuitas.  ",
+              descricao,          
               style: TextStyle(fontSize: 18.0),
             ), 
+
+            Text(
+              "Nome do professor: ",          
+              style: TextStyle(fontSize: 18.0),
+            ),
             
+            Text(
+              professorNome,          
+              style: TextStyle(fontSize: 18.0),
+            ),
+            
+            Text(
+              "Area de atuação: ",          
+              style: TextStyle(fontSize: 18.0),
+            ),
+            
+            Text(
+              professorArea,          
+              style: TextStyle(fontSize: 18.0),
+            ),
             Container(
                 padding: EdgeInsets.symmetric(vertical: 16.0),
                 width: MediaQuery.of(context).size.width,
@@ -230,7 +254,7 @@ class DetailPageExtensaoState extends State<DetailPageExtensao> {
                   },
                   color: Color.fromRGBO(58, 66, 86, 1.0),
                   child:
-                      Text("Entrar em contato com o responsável", style: TextStyle(color: Colors.white)),
+                      Text("Enviar email para o professor responsável)", style: TextStyle(color: Colors.white)),
                 )
             )
         ]

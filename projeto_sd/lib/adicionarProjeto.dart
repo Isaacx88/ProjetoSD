@@ -113,6 +113,65 @@ setSelectedRadio(int val) {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
+
+                //Tipo de projeto
+                Card(
+                  elevation: 5,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8, left: 10),
+                        child: Row(children: <Widget>[
+                        
+                        Text(
+                          "Tipo de projeto: ",
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey[600],
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.left,
+                        ),
+
+
+                        ],)
+                        
+
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0, left: 10, right: 10),
+                        child: Row(children: <Widget>[
+                          Text("Pesquisa"),                  
+                          Radio(
+                            value: 1,
+                            groupValue: selectedRadio,
+                            activeColor: Colors.black,
+                            onChanged: (val) {
+                              print("Radio $val");
+                              setSelectedRadio(val);
+                            },
+                          ),
+                        VerticalDivider(),
+                        Text("Extensão"),   
+                          Radio(
+                            value: 2,
+                            groupValue: selectedRadio,
+                            activeColor: Colors.black,
+                            onChanged: (val) {
+                              print("Radio $val");
+                              setSelectedRadio(val);
+                            },
+                          ),
+
+                                                  
+                        ]
+                      ,)
+
+
+                      )
+                    ],
+                  ),
+                ),
                 
                 //Card de título
                 Card(
@@ -322,65 +381,6 @@ setSelectedRadio(int val) {
                               items: _dropDownMenuItems,
                               onChanged: changedDropDownItem,            
                             ),
-                      )
-                    ],
-                  ),
-                ),
-
-                //Tipo de projeto
-                Card(
-                  elevation: 5,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8, left: 10),
-                        child: Row(children: <Widget>[
-                        
-                        Text(
-                          "Tipo de projeto: ",
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.grey[600],
-                              fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.left,
-                        ),
-
-
-                        ],)
-                        
-
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10.0, left: 10, right: 10),
-                        child: Row(children: <Widget>[
-                          Text("Pesquisa"),                  
-                          Radio(
-                            value: 1,
-                            groupValue: selectedRadio,
-                            activeColor: Colors.black,
-                            onChanged: (val) {
-                              print("Radio $val");
-                              setSelectedRadio(val);
-                            },
-                          ),
-                        VerticalDivider(),
-                        Text("Extensão"),   
-                          Radio(
-                            value: 2,
-                            groupValue: selectedRadio,
-                            activeColor: Colors.black,
-                            onChanged: (val) {
-                              print("Radio $val");
-                              setSelectedRadio(val);
-                            },
-                          ),
-
-                                                  
-                        ]
-                      ,)
-
-
                       )
                     ],
                   ),

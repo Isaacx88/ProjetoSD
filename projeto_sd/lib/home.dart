@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_sd/projetosPage.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -83,6 +84,20 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  //CollectionReference emails;
+  // CollectionReference emails;
+  // DocumentReference documentReference;
+
+
+  //   documentReference.get().then((datasnapshot) {
+  //     if (datasnapshot.exists) {
+  //       setState(() {
+  //         String myText = datasnapshot.data['desc'];
+  //       });
+  //     }
+  //   }
+  //List<String> names = List.from(emails['names']);
+
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +131,8 @@ print("Faculdade selecionada: " + _nomeFaculdade);
                 ListTile(
                   leading: Icon(Icons.library_add, size: 30,),
                   title: Text('Adicionar projeto', style: TextStyle(fontSize: 18), textAlign: TextAlign.left,),
+
+
                   onTap: () {
                     if(this.user.getFirebaseUser().email == "isaacbarros88@gmail.com" || this.user.getFirebaseUser().email == "fernando.freire.94@gmail.com"){
                         Navigator.push(context,

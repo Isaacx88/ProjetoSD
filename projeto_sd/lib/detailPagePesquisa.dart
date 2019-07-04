@@ -37,13 +37,13 @@ class DetailPagePesquisa extends StatefulWidget {
   String profContato;
 
   DetailPagePesquisa(this.user, this._nomeFaculdade, this.titulo, 
-  this.descricao, this.bolsa, this.professorNome, this.professorArea, this.profContato);
+  this.descricao, this.professorNome, this.professorArea, this.profContato);
 
 
 
   @override
   DetailPagePesquisaState createState() {
-    return new DetailPagePesquisaState(this.user, this._nomeFaculdade, this.titulo, this.descricao, this.bolsa, this.professorNome, this.professorArea, this.profContato);
+    return new DetailPagePesquisaState(this.user, this._nomeFaculdade, this.titulo, this.descricao, this.professorNome, this.professorArea, this.profContato);
   }
 }
 //Adaptar para exibir apenas a conta do usuário
@@ -59,7 +59,7 @@ class DetailPagePesquisaState extends State<DetailPagePesquisa> {
   String profContato;
   
   DetailPagePesquisaState(this.user, this._nomeFaculdade, this.titulo, 
-  this.descricao, this.bolsa, this.professorNome, this.professorArea, this.profContato) {
+  this.descricao, this.professorNome, this.professorArea, this.profContato) {
     projetosPesquisa = Firestore.instance
         .collection("faculdades")
         .document(_nomeFaculdade).collection("projetosPesquisa");
@@ -163,10 +163,15 @@ class DetailPagePesquisaState extends State<DetailPagePesquisa> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 35.0),
-                  Icon(
+                  InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
                     Icons.description,
                     color: Colors.white,
                     size: 30.0,
+                  ),
                   ),
                   Container(
                     width: 60.0,
@@ -180,7 +185,7 @@ class DetailPagePesquisaState extends State<DetailPagePesquisa> {
                   height: MediaQuery.of(context).size.height * 0.2,
                   child: 
                   Text(
-                    titulo,
+                    this.titulo,
                     style: TextStyle(color: Colors.white, fontSize: 20.0),
                     textAlign: TextAlign.left,
                   ),
@@ -213,7 +218,7 @@ class DetailPagePesquisaState extends State<DetailPagePesquisa> {
         child: Column(
           children: <Widget>[
             Text(
-              descricao,          
+              this.descricao,          
               style: TextStyle(fontSize: 18.0),
             ), 
 
@@ -223,7 +228,7 @@ class DetailPagePesquisaState extends State<DetailPagePesquisa> {
             ),
             
             Text(
-              professorNome,          
+              this.professorNome,          
               style: TextStyle(fontSize: 18.0),
             ),
             
@@ -233,7 +238,7 @@ class DetailPagePesquisaState extends State<DetailPagePesquisa> {
             ),
             
             Text(
-              professorArea,          
+              this.professorArea,          
               style: TextStyle(fontSize: 18.0),
             ),
             Container(

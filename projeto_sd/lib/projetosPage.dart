@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_sd/Aluno.dart';
 import 'home.dart';
+import 'projetosExtensao.dart';
 import 'projetosPesquisa.dart';
 
 
@@ -129,13 +130,12 @@ class _ProjetosPageState extends State<ProjetosPage> {
         trailing:
           Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => ContasPagarPage(this.user) 
-                  
-              //     )
-              //   );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProjetosExtensaoPage(this.user, this._nomeFaculdade)                   
+                  )
+                );
               },
           ),
 
