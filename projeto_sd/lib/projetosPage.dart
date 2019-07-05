@@ -45,11 +45,16 @@ class _ProjetosPageState extends State<ProjetosPage> {
       Container(
         padding: EdgeInsets.fromLTRB(8, 5, 8, 5),
         child: Column(children: <Widget>[
-      
+
+      Divider(
+        color: Colors.transparent,
+      ),
+
       //Teste de cores
       //Container do primeiro tile (contas a pagar)
       Container(
-        color: Colors.blue,
+        // color: Colors.blue,
+        color: Color.fromRGBO(58, 66, 86, .9),
         
         child: Stack(children: <Widget>[
           //Primeiro tile
@@ -101,8 +106,8 @@ class _ProjetosPageState extends State<ProjetosPage> {
 
         Container(
         // color: Colors.red[500],
-
-        color: Colors.blue,
+        // color: Colors.blue,
+        color: Color.fromRGBO(58, 66, 86, .9),
 
         child: Stack(children: <Widget>[
         

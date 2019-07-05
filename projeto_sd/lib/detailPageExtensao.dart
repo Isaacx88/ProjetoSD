@@ -176,19 +176,23 @@ class DetailPageExtensaoState extends State<DetailPageExtensao> {
                   
                   Container(
                     width: 60.0,
-                    child: new Divider(color: Colors.green),
+                    // child: new Divider(color: Colors.green),
+                    child: new Divider(color: Colors.white),
+
                   ),
-                  //SizedBox(height: 10.0),
+                  SizedBox(height: 10.0),
                   
                   
                   Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  // height: MediaQuery.of(context).size.height * 0.2,
+                  padding: EdgeInsets.all(40.0),
                   child: 
                   Text(
                     titulo,
                     style: TextStyle(color: Colors.white, fontSize: 20.0),
-                    textAlign: TextAlign.left,
+                    // textAlign: TextAlign.left,
+                    textAlign: TextAlign.center,
                   ),
                   ),
                   
@@ -222,26 +226,46 @@ class DetailPageExtensaoState extends State<DetailPageExtensao> {
             Text(
               descricao,          
               style: TextStyle(fontSize: 18.0),
-            ), 
+              textAlign: TextAlign.justify,
+            ),
 
-            Text(
+            Divider(
+              height: 20,
+            ),
+
+
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text(
               "Nome do professor: ",          
-              style: TextStyle(fontSize: 18.0),
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.left,
+              ),
             ),
             
-            Text(
-              professorNome,          
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text(
+              professorNome+"\n",          
               style: TextStyle(fontSize: 18.0),
+              textAlign: TextAlign.justify,
+              ),
             ),
             
-            Text(
-              "Area de atuação: ",          
-              style: TextStyle(fontSize: 18.0),
-            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text(
+              "Área de atuação: ",          
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.left,
+              ),
+            )
+            ,
             
             Text(
               professorArea,          
               style: TextStyle(fontSize: 18.0),
+              textAlign: TextAlign.justify,
             ),
             Container(
                 padding: EdgeInsets.symmetric(vertical: 16.0),

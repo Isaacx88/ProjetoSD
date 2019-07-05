@@ -275,18 +275,25 @@ print("Faculdade selecionada: " + _nomeFaculdade);
       body: Center(
         
         child: Column(children: <Widget>[
+          Divider(
+            color: Colors.transparent
+          ),
 
           Container(
             // color: Colors.white,
             padding: EdgeInsets.fromLTRB(00, 0, 10, 0),
-            height: 200,
+            height: 240,
             width: MediaQuery.of(context).size.width - 70,
             decoration: new BoxDecoration(
+              // color: Theme.of(context).primaryColor,
               image: new DecorationImage(
               
 //                image: new AssetImage("images/projetosUNIFESSPA_LOGO.PNG"), //imagem titulo epitelização
-                image: new AssetImage("images/teste2.png"), //imagem titulo epitelização
+                image: new AssetImage("images/teste2.png"),
+                // image: new AssetImage("images/Logo_proj_sd(05)3.png"), //imagem titulo epitelização
+                 
 
+                // fit: BoxFit.contain,
                 fit: BoxFit.contain,
               ),
             )

@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    new Future.delayed(Duration(seconds: 1)).then((onValue) => {
+    new Future.delayed(Duration(seconds: 5)).then((onValue) => {
           
           auth.signInWithGoogle().then((user) {
             Aluno discente = new Aluno(user);
@@ -41,6 +41,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Image.asset("images/Logo_proj_sd(05)3.png"),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

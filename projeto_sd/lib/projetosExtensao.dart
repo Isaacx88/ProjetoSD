@@ -116,7 +116,8 @@ class ProjetosExtensaoPageState extends State<ProjetosExtensaoPage> {
       appBar: AppBar(
         title: Text('Projetos de extensão'),
         centerTitle: true,
-        backgroundColor: Colors.blue,
+        // backgroundColor: Colors.blue,
+        backgroundColor: Theme.of(context).primaryColor,
         
       ),
       body:
@@ -177,14 +178,17 @@ class ProjetosExtensaoPageState extends State<ProjetosExtensaoPage> {
 
                             Padding(
                               padding: const EdgeInsets.only(
-                                  top: 8, bottom: 2.0, left: 10, right: 2),
+                                  // top: 8, bottom: 2.0, left: 10, right: 2),
+                                  top: 8, bottom: 2.0, left: 10, right: 10),
+
                               child: 
                               
                               Text(
                                 ds['titulo'].toString(),
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.grey[600]),
-                                textAlign: TextAlign.left,
+                                // textAlign: TextAlign.left,
+                                textAlign: TextAlign.justify,
                               ),
                             ),
 
@@ -214,13 +218,14 @@ class ProjetosExtensaoPageState extends State<ProjetosExtensaoPage> {
 
                             Padding(
                               padding: const EdgeInsets.only(
-                                  top: 4, bottom: 2.0, left: 10),
+                                  top: 4, bottom: 2.0, left: 10, right: 10),
                               child: Text(
                                 ds['descricao'].toString(),
                                 maxLines: 3,
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.grey[600]),
-                                textAlign: TextAlign.left,
+                                // textAlign: TextAlign.left,
+                                textAlign: TextAlign.justify,
                               ),
                             ),
 

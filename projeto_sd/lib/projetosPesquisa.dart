@@ -117,7 +117,10 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
       appBar: AppBar(
         title: Text('Projetos de pesquisa'),
         centerTitle: true,
-        backgroundColor: Colors.blue,
+        // backgroundColor: Colors.blue,
+        backgroundColor: Theme.of(context).primaryColor,
+
+
         
       ),
       body:
