@@ -283,7 +283,7 @@ class DetailPagePesquisaState extends State<DetailPagePesquisa> {
                   },
                   color: Color.fromRGBO(58, 66, 86, 1.0),
                   child:
-                      Text("Enviar email para o professor responsável)", style: TextStyle(color: Colors.white)),
+                      Text("Enviar email para o professor responsável", style: TextStyle(color: Colors.white)),
                 )
             )
         ]
