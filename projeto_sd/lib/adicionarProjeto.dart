@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_sd/Aluno.dart';
@@ -78,6 +80,14 @@ setSelectedRadio(int val) {
 
 
   static final _formKey = GlobalKey<FormState>();
+      //Evento para sair do app
+    Future<bool> _onBackPressed(){
+             Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => HomeScreen(user)));     
+  }
+  
+  //Key para utilizar a função acima
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -94,11 +104,12 @@ setSelectedRadio(int val) {
 
 // Declare this variable
 
-
-
-    return Scaffold(
+  return WillPopScope(
+    onWillPop: _onBackPressed,
+    key: _scaffoldKey,
+    child: Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
           "Adicionar projeto",
@@ -400,7 +411,7 @@ setSelectedRadio(int val) {
                     ),
                     VerticalDivider(),
                     RaisedButton(
-                      color: Colors.blue,
+                      color: Colors.green,
                       child: Text(
                         "Adicionar",
                         style: TextStyle(color: Colors.white),
@@ -559,6 +570,7 @@ setSelectedRadio(int val) {
           ),
         ),
       ),
+    )
     );
   }
     

@@ -11,6 +11,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'Aluno.dart';
 import 'detailPagePesquisa.dart';
+import 'home.dart';
 
 //import 'package:intl/intl.dart';
 
@@ -254,14 +255,7 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => DetailPagePesquisa(
-                                        this.user, 
-                                        this._nomeFaculdade,
-                                        ds["titulo"],
-                                        ds["descricao"],
-                                        ds["nomeProfessor"],
-                                        ds["areaProfessor"],
-                                        ds["emailProfessor"])                   
+                                        builder: (context) => HomeScreen(user)              
                                         )
                                     );
                                 }

@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_sd/projetosPage.dart';
+import 'package:projeto_sd/senhaData.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'Aluno.dart';
@@ -24,19 +27,22 @@ import 'adicionarProjeto.dart';
 class HomeScreen extends StatefulWidget {
   Aluno user;
   String _nomeFaculdade;
-  HomeScreen(this.user, {Key key}) : super(key: key);
+  final SenhaData senhaData;
+  HomeScreen(this.user, {Key key, this.senhaData}) : super(key: key);
 
-  _HomeScreenState createState() => _HomeScreenState(user, _nomeFaculdade);
+  _HomeScreenState createState() => _HomeScreenState(user, _nomeFaculdade, senhaData);
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   Aluno user;
+  final senhaController = TextEditingController();
+
 
   // Widget _tabSelected;
   // int _tabSelectedIndex = 0;
   // List<Widget> _tabsWidget;
 
-  _HomeScreenState(this.user, this._nomeFaculdade);
+  _HomeScreenState(this.user, this._nomeFaculdade, this.senhaData);
 
   // _HomeScreenState(this.user) {
   //   _tabSelected = GeralTab(user);
@@ -54,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<DropdownMenuItem<String>> _dropDownMenuItems;
   String _nomeFaculdade;
+  final SenhaData senhaData;
 
   @override
   void initState() {
@@ -97,13 +104,60 @@ class _HomeScreenState extends State<HomeScreen> {
   //     }
   //   }
   //List<String> names = List.from(emails['names']);
+  Stream<QuerySnapshot> snapteste = Firestore.instance
+            .collection("professores")
+            .document("emails")
+            .collection("emails2")
+            .snapshots();
+  DocumentReference documentReference;
+String senha;
+            // Firestore.instance
+            // .collection("professores")
+            // .document("emails")
+            // .collection("emails2")
+            // .snapshots(),
+Future<QuerySnapshot> documentReference2 = Firestore.instance.collection("professores").getDocuments();
+
+
+
+    //Evento para sair do app
+    Future<bool> _onBackPressed(){
+    return showDialog(
+      
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Sair do app?"),
+        actions: <Widget>[
+         
+          FlatButton(
+            child: Text("Não", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
+            onPressed: () => Navigator.pop(context,false),
+          ),
+
+           FlatButton(
+            child: Text("Sim", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
+            onPressed: ()=> exit(0),
+          )
+        ],
+      )
+    );
+  }
+  
+  //Key para utilizar a função acima
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+
 
 
   @override
   Widget build(BuildContext context) {
+    //print("Senha: " + senhaData.senha.toString());
 
 print("Faculdade selecionada: " + _nomeFaculdade);
-        return Scaffold(
+  return WillPopScope(
+    onWillPop: _onBackPressed,
+    key: _scaffoldKey,
+    child: Scaffold(
           backgroundColor: Colors.white,
           drawer: Drawer(
             child: ListView(
@@ -134,11 +188,32 @@ print("Faculdade selecionada: " + _nomeFaculdade);
 
 
                   onTap: () {
-                    if(this.user.getFirebaseUser().email == "isaacbarros88@gmail.com" || this.user.getFirebaseUser().email == "fernando.freire.94@gmail.com"){
+                         return new Alert(
+                            context: context,
+                            title: "Insira a senha de acesso",
+                            content: Column(
+                              children: <Widget>[
+
+                                TextField(
+                                  obscureText: true,
+                                  controller: senhaController,
+                                  decoration: InputDecoration(
+                                    icon: Icon(Icons.lock),
+                                    labelText: 'Senha de acesso',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            buttons: [
+                              DialogButton(
+                                onPressed: () => {
+
+                    if(senhaController.text == "senha"){
                         Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AdicionarProjetosPage(this.user)));
+                        MaterialPageRoute(builder: (context) => AdicionarProjetosPage(this.user))),
+                        senhaController.text = "",
                     } else{
-                     return new Alert(
+                      new Alert(
                         context: context,
                         type: AlertType.error,
 
@@ -155,8 +230,20 @@ print("Faculdade selecionada: " + _nomeFaculdade);
                             width: 120,
                           )
                         ],
-                      ).show();
+                      ).show()
                     }
+                                },
+                                child: Text(
+                                  "ACESSAR",
+                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                ),
+                              )
+                            ]).show();
+
+
+
+
+
 
                   },
                 )
@@ -270,7 +357,29 @@ print("Faculdade selecionada: " + _nomeFaculdade);
       //   currentIndex: _tabSelectedIndex,
       //   onTap: _changeTab,
       // ),
-    );
-    
+    ));
+ 
+ 
+
+
+
+  
   }
+
+  //   Future getData() async {
+  //   Firestore.instance
+  //           .collection("professores")
+  //           .document("emails")
+  //           .collection("emails2")
+  //           .snapshots().then((DocumentSnapshot snapshot) {
+  //     //print('Data : ${snapshot.value}');
+  //   });
+  //   documentReference.get().then((datasnapshot) {
+  //     if (datasnapshot.exists) {
+  //       setState(() {
+  //         senha = datasnapshot.data['desc'];
+  //       });
+  //     }
+  //   });
+  // }
 }
