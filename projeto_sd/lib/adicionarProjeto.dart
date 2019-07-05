@@ -109,6 +109,7 @@ setSelectedRadio(int val) {
     key: _scaffoldKey,
     child: Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
