@@ -10,8 +10,8 @@ import 'dart:async';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'Aluno.dart';
+import 'detailPageExtensao.dart';
 import 'detailPagePesquisa.dart';
-import 'home.dart';
 
 //import 'package:intl/intl.dart';
 
@@ -119,8 +119,6 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
         centerTitle: true,
         // backgroundColor: Colors.blue,
         backgroundColor: Theme.of(context).primaryColor,
-
-
         
       ),
       body:
@@ -181,12 +179,17 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
 
                             Padding(
                               padding: const EdgeInsets.only(
-                                  top: 8, bottom: 2.0, left: 10, right: 2),
-                              child: Text(
-                                ds['titulo'],
+                                  // top: 8, bottom: 2.0, left: 10, right: 2),
+                                  top: 8, bottom: 2.0, left: 10, right: 10),
+
+                              child: 
+                              
+                              Text(
+                                ds['titulo'].toString(),
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.grey[600]),
-                                textAlign: TextAlign.left,
+                                // textAlign: TextAlign.left,
+                                textAlign: TextAlign.justify,
                               ),
                             ),
 
@@ -216,13 +219,14 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
 
                             Padding(
                               padding: const EdgeInsets.only(
-                                  top: 4, bottom: 2.0, left: 10),
+                                  top: 4, bottom: 2.0, left: 10, right: 10),
                               child: Text(
-                                ds['descricao'],
+                                ds['descricao'].toString()+" ...",
                                 maxLines: 3,
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.grey[600]),
-                                textAlign: TextAlign.left,
+                                // textAlign: TextAlign.left,
+                                textAlign: TextAlign.justify,
                               ),
                             ),
 
@@ -258,7 +262,15 @@ class ProjetosPesquisaPageState extends State<ProjetosPesquisaPage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => HomeScreen(user)              
+                                        builder: (context) => DetailPagePesquisa(
+                                        this.user, 
+                                        this._nomeFaculdade,
+                                        ds["titulo"],
+                                        ds["descricao"],
+                                        //ds["bolsa"],
+                                        ds["nomeProfessor"],
+                                        ds["areaProfessor"],
+                                        ds["emailProfessor"])                   
                                         )
                                     );
                                 }

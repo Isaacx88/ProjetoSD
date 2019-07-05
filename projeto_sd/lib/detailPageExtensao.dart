@@ -218,7 +218,8 @@ class DetailPageExtensaoState extends State<DetailPageExtensao> {
     
     Container(
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.all(40.0),
+      //padding: EdgeInsets.all(40.0),
+      padding: EdgeInsets.all(25.0),
       child: Center(
         child: Column(
           children: <Widget>[
@@ -259,14 +260,17 @@ class DetailPageExtensaoState extends State<DetailPageExtensao> {
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               textAlign: TextAlign.left,
               ),
-            )
-            ,
-            
-            Text(
+            ),
+
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text(
               professorArea,          
               style: TextStyle(fontSize: 18.0),
               textAlign: TextAlign.justify,
+              ),
             ),
+
             Container(
                 padding: EdgeInsets.symmetric(vertical: 16.0),
                 width: MediaQuery.of(context).size.width,
