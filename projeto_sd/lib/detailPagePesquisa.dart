@@ -173,25 +173,31 @@ class DetailPagePesquisaState extends State<DetailPagePesquisa> {
                     size: 30.0,
                   ),
                   ),
+                  
                   Container(
                     width: 60.0,
-                    child: new Divider(color: Colors.green),
+                    // child: new Divider(color: Colors.green),
+                    child: new Divider(color: Colors.white),
+
                   ),
                   //SizedBox(height: 10.0),
                   
                   
                   Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  // height: MediaQuery.of(context).size.height * 0.2,
+                  padding: EdgeInsets.fromLTRB(5, 0, 30, 0),
                   child: 
+                  
                   Text(
-                    this.titulo,
-                    style: TextStyle(color: Colors.white, fontSize: 20.0),
-                    textAlign: TextAlign.left,
+                    titulo,
+                    style: TextStyle(color: Colors.white, fontSize: 15.0),
+                    // textAlign: TextAlign.left,
+                    textAlign: TextAlign.center,
                   ),
                   ),
                   
-                  SizedBox(height: 2.0),
+                  //SizedBox(height: 2.0),
          
                 ],
               ),
@@ -213,34 +219,59 @@ class DetailPagePesquisaState extends State<DetailPagePesquisa> {
     
     Container(
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.all(40.0),
+      //padding: EdgeInsets.all(40.0),
+      padding: EdgeInsets.all(25.0),
       child: Center(
         child: Column(
           children: <Widget>[
-            Text(
-              this.descricao,          
-              style: TextStyle(fontSize: 18.0),
-            ), 
 
             Text(
+              descricao,          
+              style: TextStyle(fontSize: 18.0),
+              textAlign: TextAlign.justify,
+            ),
+
+            Divider(
+              height: 20,
+            ),
+
+
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text(
               "Nome do professor: ",          
-              style: TextStyle(fontSize: 18.0),
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.left,
+              ),
             ),
             
-            Text(
-              this.professorNome,          
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text(
+              professorNome+"\n",          
               style: TextStyle(fontSize: 18.0),
+              textAlign: TextAlign.justify,
+              ),
             ),
             
-            Text(
-              "Area de atuação: ",          
-              style: TextStyle(fontSize: 18.0),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text(
+              "Área de atuação: ",          
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.left,
+              ),
             ),
-            
-            Text(
-              this.professorArea,          
+
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text(
+              professorArea,          
               style: TextStyle(fontSize: 18.0),
+              textAlign: TextAlign.justify,
+              ),
             ),
+
             Container(
                 padding: EdgeInsets.symmetric(vertical: 16.0),
                 width: MediaQuery.of(context).size.width,

@@ -186,11 +186,11 @@ class DetailPageExtensaoState extends State<DetailPageExtensao> {
                   Container(
                   width: MediaQuery.of(context).size.width,
                   // height: MediaQuery.of(context).size.height * 0.2,
-                  padding: EdgeInsets.all(40.0),
+                  padding: EdgeInsets.fromLTRB(5, 0, 30, 0),
                   child: 
                   Text(
                     titulo,
-                    style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    style: TextStyle(color: Colors.white, fontSize: 17.0),
                     // textAlign: TextAlign.left,
                     textAlign: TextAlign.center,
                   ),
