@@ -220,7 +220,7 @@ class ProjetosExtensaoPageState extends State<ProjetosExtensaoPage> {
                               padding: const EdgeInsets.only(
                                   top: 4, bottom: 2.0, left: 10, right: 10),
                               child: Text(
-                                ds['descricao'].toString(),
+                                ds['descricao'].toString()+" ...",
                                 maxLines: 3,
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.grey[600]),
